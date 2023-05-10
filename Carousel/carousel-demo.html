@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .main {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .inner-container{
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .item {
+      width: 100%;
+      position: absolute;
+      display: none;
+      height: 100vh;
+      background-color: blanchedalmond;
+    }
+
+    .item.active {
+      display: block;
+    }
+
+    .next {
+      animation: next 0.4s linear;
+      animation-fill-mode: forwards;
+    }
+
+    .next2 {
+      animation: next2 0.4s linear;
+      animation-fill-mode: forwards;
+    }
+
+    .prev {
+      animation: prev 0.4s linear;
+      animation-fill-mode: forwards;
+    }
+
+    .prev2 {
+      animation: prev2 0.4s linear;
+      animation-fill-mode: forwards;
+    }
+
+    .next-btn {
+      position: absolute;
+      right: 3rem;
+      top: 50%;
+      padding: 3px;
+      z-index: 100;
+    }
+
+    .prev-btn {
+      position: absolute;
+      left: 3rem;
+      top: 50%;
+      padding: 3px;
+      z-index: 100;
+    }
+
+    @keyframes next {
+      0% {
+        transform: translateX(0px);
+        filter: blur(0);
+      }
+
+      100% {
+        transform: translateX(-100%);
+        filter: blur(20px);
+      }
+    }
+
+    @keyframes next2 {
+      0% {
+        transform: translateX(100%);
+        filter: blur(20px);
+      }
+
+      100% {
+        transform: translateX(0);
+        filter: blur(0);
+
+      }
+    }
+
+    @keyframes prev {
+      0% {
+        transform: translateX(0px);
+        filter: blur(0px);
+      }
+
+      100% {
+        transform: translateX(100%);
+        filter: blur(20px);
+      }
+    }
+
+    @keyframes prev2 {
+      0% {
+        transform: translateX(-100%);
+        filter: blur(20px);
+      }
+
+      100% {
+        transform: translateX(0px);
+        filter: blur(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="main">
+    <button class="next-btn">Next</button>
+    <button class="prev-btn">Prev</button>
+    <div class="sub">
+      <div class="item active">
+        <div class="inner-container">
+          <img src="https://images.secretlab.co/theme/common/collab_pokemon_catalog_charizard-min.png" alt="">
+        </div>
+      </div>
+      <div class="item">
+        <div class="inner-container">
+          <img src="https://images.secretlab.co/theme/common/collab_pokemon_catalog_pikachu-min.png" alt="">
+        </div>
+      </div>
+      <div class="item">
+        <div class="inner-container">
+          <img src="https://www.gannett-cdn.com/media/2022/01/25/USATODAY/usatsports/pokemon-games-ranked-10.jpg" alt="">
+        </div>
+      </div>
+      <div class="item">
+        <div class="inner-container">
+          <img width="60%" src="https://assets-prd.ignimgs.com/2022/12/15/new-pokmon-animated-series-artwork-1671141718596.jpg" alt="">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script>
+    let currentVal = 0;
+    let prevVal = -1;
+    let itemEls = document.querySelectorAll(".item");
+    const itemLength = itemEls.length;
+    let nextEl = document.querySelector(".next-btn");
+    let prevEl = document.querySelector(".prev-btn");
+
+    nextEl.addEventListener('click', () => {
+      if (prevVal != -1) {
+        itemEls[prevVal].classList.remove("active", "next", "next2", "prev", "prev2");
+      }
+      prevVal = currentVal;
+      itemEls[currentVal].classList.remove("next2", "prev2");
+      itemEls[currentVal].classList.add("next");
+      increment()
+      itemEls[currentVal].classList.add("active");
+      itemEls[currentVal].classList.add("next2");
+
+    })
+
+    prevEl.addEventListener('click', () => {
+      if (prevVal != -1) {
+        itemEls[prevVal].classList.remove("active", "next", "next2", "prev", "prev2");
+      }
+      prevVal = currentVal;
+      itemEls[currentVal].classList.remove("prev2", "next2");
+      itemEls[currentVal].classList.add("prev");
+      decrement()
+      itemEls[currentVal].classList.add("active");
+      itemEls[currentVal].classList.add("prev2");
+    })
+
+    function increment() {
+      currentVal++;
+      if (currentVal > itemLength - 1) {
+        currentVal = 0;
+      }
+    };
+
+    function decrement() {
+      currentVal--;
+      if (currentVal < 0) {
+        currentVal = itemLength - 1;
+      }
+    };
+  </script>
+</body>
+
+</html>
