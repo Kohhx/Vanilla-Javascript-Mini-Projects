@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #board {
+        width: 100%;
+        height: 100vh;
+        background-color: #ccc;
+      }
+      input {
+        background: transparent;
+        outline: none;
+        border: none;
+        border-bottom: 2px solid #747272;
+        margin: 0.5rem;
+        font-size: 1.2rem;
+        padding: 0.3rem;
+      }
+      #addNotes {
+        background: white;
+        border-radius: 5px;
+        border-bottom: 2px solid #747272;
+        margin: 0.5rem;
+        font-size: 1.2rem;
+        padding: 0.3rem;
+        cursor: pointer;
+      }
+      #addNotes:hover {
+        background: rgb(231, 230, 230);
+      }
+      .note {
+        width: 300px;
+        padding: 0.5rem;
+        cursor: pointer;
+        border-radius: 5px;
+        box-shadow: 0 0 6px 0px #000000;
+        color: black;
+        position: relative;
+        margin-top: 0.3rem;
+      }
+      .cross{
+        position: absolute;
+        top:3px;
+        right:5px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="board">
+      <h1 style="display: inline;">My DnD Board</h1>
+      <div style="display: inline;float: right;">
+        <input class="input" type="text" />
+        <button id="addNotes">Add Notes</button>
+      </div>
+    </div>
+    <script src="./script.js" type="module"></script>
+  </body>
+</html>
